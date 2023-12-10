@@ -1,8 +1,8 @@
 import kotlin.reflect.full.declaredFunctions
 
 class TestRunnerImpl : TestRunner {
-    override fun <T> runTest(steps: T, test: () -> Unit) {
-        val functions = steps!!::class.declaredFunctions
+    override fun <T: Any> runTest(steps: T, test: () -> Unit) {
+        val functions = steps::class.declaredFunctions
         val beforeMethods = functions.filter { it.name.startsWith("before") }
         val afterMethods = functions.filter { it.name.startsWith("after") }
 
